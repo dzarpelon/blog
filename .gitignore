@@ -1,0 +1,29 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+crash.log
+crash.*.log
+*.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Hugo
+/public/
+/resources/_gen/
+/hugo_stats.json
+
+# Markdown
+*.md
+
+# General
+.DS_Store
+Thumbs.db
+*.log
+*.bak
+*.swp
+*.tmp
