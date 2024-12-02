@@ -1,3 +1,15 @@
+# git
+.git/*.diff
+.git/*.patch
+.git/*.lock
+.git/*.idx
+.git/*.pack
+.git/*.so
+.git/*.rej
+.git/*.orig
+.git/*.bak
+.git/*.swp
+.git/*.swo
 # Terraform
 *.tfstate
 *.tfstate.*
@@ -12,13 +24,13 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+# devcontainer
+.devcontainer/
+
 # Hugo
 /public/
 /resources/_gen/
 /hugo_stats.json
-
-# Markdown
-*.md
 
 # General
 .DS_Store
