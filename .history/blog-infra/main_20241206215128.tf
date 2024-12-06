@@ -23,17 +23,3 @@ data "hcp_organization" "HCP_Organization" {
 #  bucket = "dzarpelon-blog-bucket"
 #  object_lock_enabled = true
 #  }
-
-module "s3_bucket" {
-  source = "terraform-aws-modules/s3-bucket/aws"
-
-  bucket = "blog-dzarpelon"
-  acl    = "private"
-
-  control_object_ownership = true
-  object_ownership         = "ObjectWriter"
-
-  versioning = {
-    enabled = true
-  }
-}

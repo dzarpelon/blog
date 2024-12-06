@@ -27,7 +27,7 @@ data "hcp_organization" "HCP_Organization" {
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = "blog-dzarpelon"
+  bucket = "my-s3-bucket"
   acl    = "private"
 
   control_object_ownership = true
