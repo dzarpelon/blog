@@ -19,6 +19,12 @@ provider "hcp" {
   client_id     = var.hcp_client_id
   client_secret = var.hcp_client_secret
 }
+
+resource "hcp_project" "example" {
+  name        = "example-project"
+  description = "My new project!"
+}
+
 data "hcp_organization" "HCP_Organization" {
 
 }

@@ -4,10 +4,6 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.80"
     }
-    hcp = {
-      source  = "hashicorp/hcp"
-      version = "~> 0.100"
-    }
   }
 }
 
@@ -19,8 +15,8 @@ provider "hcp" {
   client_id     = var.hcp_client_id
   client_secret = var.hcp_client_secret
 }
-data "hcp_organization" "HCP_Organization" {
 
+data "hcp_organization" "HCP_Organization" {
 }
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
@@ -34,9 +30,4 @@ module "s3_bucket" {
   versioning = {
     enabled = true
   }
-}
-
-module "acm" {
-  source      = "./modules/acm"
-  domain_name = "blog.dzarpelon.com"
 }

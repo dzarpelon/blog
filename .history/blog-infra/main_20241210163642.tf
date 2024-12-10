@@ -19,8 +19,15 @@ provider "hcp" {
   client_id     = var.hcp_client_id
   client_secret = var.hcp_client_secret
 }
-data "hcp_organization" "HCP_Organization" {
 
+resource "hcp_project" "blog" {
+  name        = "blog"
+  description = "My blog project"
+  organization_id = data.hcp_organization.HCP_Organization.id
+}
+
+data "hcp_organization" "HCP_Organization" {
+  name = "DZTech" 
 }
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
