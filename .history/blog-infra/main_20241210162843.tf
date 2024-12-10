@@ -4,10 +4,6 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.80"
     }
-    hcp = {
-      source  = "hashicorp/hcp"
-      version = "~> 0.100"
-    }
   }
 }
 
@@ -18,7 +14,9 @@ provider "aws" {
 provider "hcp" {
   client_id     = var.hcp_client_id
   client_secret = var.hcp_client_secret
+  project = "blog"
 }
+
 data "hcp_organization" "HCP_Organization" {
 
 }

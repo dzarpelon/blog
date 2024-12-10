@@ -19,6 +19,13 @@ provider "hcp" {
   client_id     = var.hcp_client_id
   client_secret = var.hcp_client_secret
 }
+
+resource "hcp_project" "blog" {
+  name        = "blog"
+  description = "My blog project"
+  organization_id = data.hcp_organization.HCP_Organization.id
+}
+
 data "hcp_organization" "HCP_Organization" {
 
 }
