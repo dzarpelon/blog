@@ -1,42 +1,15 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.80"
-    }
-    hcp = {
-      source  = "hashicorp/hcp"
-      version = "~> 0.100"
-    }
-  }
+variable "hcp_client_id" {
+  description = "The client ID for HCP"
+  type        = string
 }
 
-provider "aws" {
-  region = "eu-central-1"
+variable "hcp_client_secret" {
+  description = "The client secret for HCP"
+  type        = string
 }
 
-provider "hcp" {
-  client_id     = var.hcp_client_id
-  client_secret = var.hcp_client_secret
-}
-data "hcp_organization" "HCP_Organization" {
-
-}
-module "s3_bucket" {
-  source = "terraform-aws-modules/s3-bucket/aws"
-
-  bucket = "blog-dzarpelon"
-  acl    = "private"
-
-  control_object_ownership = true
-  object_ownership         = "ObjectWriter"
-
-  versioning = {
-    enabled = true
-  }
-}
-
-module "acm" {
-  source      = "./modules/acm"
-  domain_name = "blog.dzarpelon.com"
+module "cloudflare" {
+  source = "./modules/cloudflare"
+  hcp_client_id     = var.hcp_client_id
+  hcp_client_secret = var.hcp_client_secret
 }

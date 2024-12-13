@@ -6,5 +6,4 @@ variable "hcp_client_id" {
 variable "hcp_client_secret" {
   description = "The client secret for HCP"
   type        = string
-  default     = ""  # Default to an empty string
 }
