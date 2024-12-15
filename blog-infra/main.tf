@@ -2,7 +2,7 @@ terraform {
   backend "remote" {
     organization = "DZarpelon_Blog"
     workspaces {
-      name = "prod"
+      name = "blog"
     }
     
   }
