@@ -1,3 +1,14 @@
+terraform {
+  backend "remote" {
+    organization = "DZarpelon_Blog"
+    workspaces {
+      name = "prod"
+    }
+    
+  }
+}
+
+
 variable "hcp_client_id" {
   description = "The client ID for HCP"
   type        = string
@@ -9,13 +20,13 @@ variable "hcp_client_secret" {
 }
 
 module "cloudflare" {
-  source = "./modules/cloudflare"
+  source            = "./modules/cloudflare"
   hcp_client_id     = var.hcp_client_id
   hcp_client_secret = var.hcp_client_secret
 }
 
 module "aws_s3_bucket" {
-  source = "./modules/s3_bucket"
+  source            = "./modules/s3_bucket"
   hcp_client_id     = var.hcp_client_id
   hcp_client_secret = var.hcp_client_secret
 }
