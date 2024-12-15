@@ -4,20 +4,26 @@ terraform {
     workspaces {
       name = "blog"
     }
-
+    
   }
   required_providers {
     hcp = {
-      source  = "hashicorp/hcp"
+      source = "hashicorp/hcp"
       version = "~>0.100"
     }
-  }
+}
 }
 
-provider "hcp" {
-  client_id     = var.hcp_client_id
-  client_secret = var.hcp_client_secret
+variable "hcp_client_id" {
+  description = "The client ID for HCP"
+  type        = string
 }
+
+variable "hcp_client_secret" {
+  description = "The client secret for HCP"
+  type        = string
+}
+
 module "cloudflare" {
   source            = "./modules/cloudflare"
   hcp_client_id     = var.hcp_client_id

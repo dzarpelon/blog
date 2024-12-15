@@ -18,12 +18,6 @@ terraform {
 data "hcp_vault_secrets_app" "cloudflare" {
   app_name   = "Cloudflare"
 }
-
-# set aws region for ACM certificate generation for Cloudfront:
-provider "aws" {
-  alias  = "us_east_1"
-  region = "us-east-1"  # ACM certificates for CloudFront must be in us-east-1
-}
 #Cloudflare provider block
 
 # Set Cloudflare token

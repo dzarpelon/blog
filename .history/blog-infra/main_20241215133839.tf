@@ -18,6 +18,10 @@ provider "hcp" {
   client_id     = var.hcp_client_id
   client_secret = var.hcp_client_secret
 }
+data "hcp_vault_secrets_secret" "hcp_credentials" {
+  app_name   = "HCP"
+  secret_name = "credentials"
+}
 module "cloudflare" {
   source            = "./modules/cloudflare"
   hcp_client_id     = var.hcp_client_id

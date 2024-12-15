@@ -15,8 +15,12 @@ terraform {
 }
 
 provider "hcp" {
-  client_id     = var.hcp_client_id
-  client_secret = var.hcp_client_secret
+  client_id     = data.hcp_vault_secrets_secret.hcp_credentials.data["client_id"]
+  client_secret = data.hcp_vault_secrets_secret.hcp_credentials.data["client_secret"]
+}
+data "hcp_vault_secrets_secret" "hcp_credentials" {
+  app_name   = "HCP"
+  secret_name = "credentials"
 }
 module "cloudflare" {
   source            = "./modules/cloudflare"
