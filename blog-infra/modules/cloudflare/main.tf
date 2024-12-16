@@ -46,13 +46,11 @@ resource "cloudflare_record" "blog" {
   ttl     = 3600
  }
 
-# Loop through validation details and create DNS records
+#  validation details and create DNS records
 resource "cloudflare_record" "acm_validation" {
-  for_each = { for v in var.validation_details : v.resource_record_name => v }
-
   zone_id = data.cloudflare_zone.blog_zone.id
-  name    = each.value.resource_record_name
-  type    = each.value.resource_record_type
-  content   = each.value.resource_record_value
+  name    = var.validation_details[0].resource_record_name
+  type    = var.validation_details[0].resource_record_type
+  content = var.validation_details[0].resource_record_value
   ttl     = 300
 }
