@@ -27,3 +27,9 @@ variable "tags" {
   type        = map(string)
   default     = {} # Optional default for no tags
 }
+
+# Cloudflare Zone ID for DNS validation
+variable "cloudflare_zone_id" {
+  description = "The Cloudflare Zone ID required for DNS validation."
+  type        = string
+}
