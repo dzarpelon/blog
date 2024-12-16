@@ -44,4 +44,15 @@ resource "cloudflare_record" "blog" {
   content = "192.0.2.2"
   type    = "A"
   ttl     = 3600
+ }
+
+# Loop through validation details and create DNS records
+resource "cloudflare_record" "acm_validation" {
+  for_each = { for v in var.validation_details : v.resource_record_name => v }
+
+  zone_id = data.cloudflare_zone.blog_zone.id
+  name    = each.value.resource_record_name
+  type    = each.value.resource_record_type
+  content   = each.value.resource_record_value
+  ttl     = 300
 }

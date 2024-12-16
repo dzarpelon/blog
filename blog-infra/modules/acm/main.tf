@@ -39,6 +39,6 @@ resource "aws_acm_certificate" "this" {
 # This data block retrieves the details of the most recent ACM certificate in the 'PENDING_VALIDATION' state for the domain.
 data "aws_acm_certificate" "cert" {
   domain                 = aws_acm_certificate.this.domain_name
-  statuses               = ["PENDING_VALIDATION"]
+  statuses               = ["ISSUED","PENDING_VALIDATION"]
   most_recent            = true
 }

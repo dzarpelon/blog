@@ -23,6 +23,8 @@ module "cloudflare" {
   hcp_client_id     = var.hcp_client_id
   hcp_client_secret = var.hcp_client_secret
   domain_name       = var.domain_name
+  validation_details = module.acm.validation_details
+
 }
 
 module "aws_s3_bucket" {
