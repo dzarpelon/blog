@@ -22,7 +22,6 @@ module "cloudflare" {
   source            = "./modules/cloudflare"
   hcp_client_id     = var.hcp_client_id
   hcp_client_secret = var.hcp_client_secret
-  domain_name       = var.domain_name
 }
 
 module "aws_s3_bucket" {
@@ -33,8 +32,8 @@ module "aws_s3_bucket" {
 
 # Call the ACM module to create the ACM certificate.
 module "acm" {
-  hcp_client_id             = var.hcp_client_id
-  hcp_client_secret         = var.hcp_client_secret
+  hcp_client_id     = var.hcp_client_id
+  hcp_client_secret = var.hcp_client_secret
   source                    = "./modules/acm"
   domain_name               = var.domain_name
   subject_alternative_names = var.subject_alternative_names
