@@ -31,15 +31,9 @@ provider "cloudflare" {
   api_token = data.hcp_vault_secrets_app.cloudflare.secrets["zone_edit"]
 }
 
-# Query the Cloudflare zone dynamically using the domain name
-data "cloudflare_zone" "blog_zone" {
-  name = var.domain_name
-}
-
-
 # Create a Cloudflare DNS record for the Cloudfront 
 resource "cloudflare_record" "blog" {
-  zone_id = data.cloudflare_zone.blog_zone.id
+  zone_id = data.hcp_vault_secrets_app.cloudflare.secrets["zoneID"]
   name    = "blog"
   content = "192.0.2.2"
   type    = "A"
