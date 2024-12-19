@@ -48,7 +48,7 @@ resource "cloudflare_record" "blog_cloudfront" {
 resource "cloudflare_record" "acm_validation" {
   count   = length(var.validation_details)
   zone_id = data.cloudflare_zone.blog_zone.id
-  name    = trimsuffix(var.validation_details[count.index].resource_record_name, ".")
+  name    = var.validation_details[count.index].resource_record_name
   type    = var.validation_details[count.index].resource_record_type
   content = var.validation_details[count.index].resource_record_value
   ttl     = 300

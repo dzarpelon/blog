@@ -1,31 +1,8 @@
-terraform {
-    required_providers {
-        hcp = {
-        source = "hashicorp/hcp"
-        version = "~>0.100"
-        }
-     aws = {
-            source = "hashicorp/aws"
-            version = "~>5.81"
-        }
-    }
-}
-
-# Fetch Secrets from HCP Vault
-data "hcp_vault_secrets_app" "aws_free_tier" {
-    app_name   = "AWSfreeTier"
-}
-provider "aws" {
-    region = "eu-central-1"
-    access_key = data.hcp_vault_secrets_app.aws_free_tier.secrets["aws_access_key_id"]
-    secret_key = data.hcp_vault_secrets_app.aws_free_tier.secrets["aws_secret_access_key"]
-}
-
 resource "aws_cloudfront_distribution" "this" {
   enabled             = true
   is_ipv6_enabled     = true
   comment             = "CloudFront distribution for blog.dzarpelon.com"
-  default_root_object = "index.html"
+
   aliases = [
     var.domain_name
   ]
@@ -64,7 +41,7 @@ resource "aws_cloudfront_distribution" "this" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = var.certificate_arn
+    acm_certificate_arn            = var.certificate_arn
     ssl_support_method             = "sni-only"
     minimum_protocol_version       = "TLSv1.2_2019"
   }

@@ -19,8 +19,6 @@ provider "aws" {
 provider "aws" {
   alias  = "us_east_1"
   region = "us-east-1"
-  access_key = data.hcp_vault_secrets_app.aws_free_tier.secrets["aws_access_key_id"]
-  secret_key = data.hcp_vault_secrets_app.aws_free_tier.secrets["aws_secret_access_key"]
 }
 
 data "hcp_vault_secrets_app" "aws_free_tier" {
@@ -42,7 +40,5 @@ resource "aws_acm_certificate_validation" "this" {
   certificate_arn   = aws_acm_certificate.this.arn
   validation_record_fqdns = [
     for record in var.validation_details : record.resource_record_value]
-  lifecycle {
-    ignore_changes = [validation_record_fqdns]
-  }
+  
 }

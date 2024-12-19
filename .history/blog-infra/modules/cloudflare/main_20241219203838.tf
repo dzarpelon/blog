@@ -40,17 +40,16 @@ resource "cloudflare_record" "blog_cloudfront" {
   name    = "blog"  # Subdomain for your blog
   type    = "CNAME"
   content = var.cloudfront_distribution_domain_name  # Replace this with the actual domain
-  ttl     = 1
+  ttl     = 300
   proxied = true    # Set to true if you want to use Cloudflare's proxy
 }
 
 #  validation details and create DNS records
 resource "cloudflare_record" "acm_validation" {
-  count   = length(var.validation_details)
   zone_id = data.cloudflare_zone.blog_zone.id
-  name    = trimsuffix(var.validation_details[count.index].resource_record_name, ".")
-  type    = var.validation_details[count.index].resource_record_type
-  content = var.validation_details[count.index].resource_record_value
+  name    = var.validation_details[0].resource_record_name
+  type    = var.validation_details[0].resource_record_type
+  content = var.validation_details[0].resource_record_value
   ttl     = 300
-  proxied = false
+  proxied = true
 }

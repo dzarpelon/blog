@@ -28,8 +28,3 @@ variable "cloudfront_distribution_domain_name" {
   description = "The domain name of the CloudFront distribution."
   type        = string
 }
-
-variable "acm_certificate_arn" {
-  description = "ARN of the ACM certificate"
-  type        = string
-}

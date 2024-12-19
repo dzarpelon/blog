@@ -45,11 +45,10 @@ variable "cloudflare_zone_id" {
 }
 
 variable "validation_details" {
-  description = "Validation details for DNS records (optional for ACM validation)"
+  description = "Details required for ACM validation"
   type        = list(object({
     resource_record_name  = string
     resource_record_type  = string
     resource_record_value = string
   }))
-  default     = []  # Optional, allows for empty values
 }

@@ -24,12 +24,19 @@ variable "validation_details" {
     resource_record_value = string
   }))
 }
-variable "cloudfront_distribution_domain_name" {
-  description = "The domain name of the CloudFront distribution."
+
+# CloudFront domain name (optional placeholder for initial apply).
+variable "cloudfront_domain_name" {
+  description = "The CloudFront distribution domain name. If unknown, a placeholder will be used."
   type        = string
+  default     = "placeholder.cloudfront.net"
 }
 
-variable "acm_certificate_arn" {
-  description = "ARN of the ACM certificate"
-  type        = string
+# Logic to handle placeholder-based Cloudflare DNS record creation
+resource "cloudflare_record" "cloudfront" {
+  zone_id = data.cloudflare_zone.blog_zone.id
+  name    = "blog"
+  type    = "CNAME"
+  value   = coalesce(var.cloudfront_domain_name, "placeholder.cloudfront.net")
+  ttl     = 300
 }

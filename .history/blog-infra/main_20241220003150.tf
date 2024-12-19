@@ -26,6 +26,7 @@ module "cloudflare" {
   validation_details              = module.acm.validation_details
   cloudfront_distribution_domain_name = module.cloudfront.cloudfront_distribution_domain_name
   acm_certificate_arn = module.acm.certificate_arn
+  cloudflare_api_token            = var.cloudflare_api_token
 }
 
 module "aws_s3_bucket" {

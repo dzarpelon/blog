@@ -22,9 +22,3 @@ variable "certificate_arn" {
   description = "The ARN of the ACM certificate to use with the CloudFront distribution."
   type        = string
 }
-
-variable "tags" {
-  description = "Tags to apply to the CloudFront distribution."
-  type        = map(string)
-  default     = {} # Optional default for no tags
-}
