@@ -32,6 +32,7 @@ module "aws_s3_bucket" {
   source            = "./modules/s3_bucket"
   hcp_client_id     = var.hcp_client_id
   hcp_client_secret = var.hcp_client_secret
+  oai_arn  = module.cloudfront.oai_arn
 }
 
 # Call the ACM module to create the ACM certificate.
